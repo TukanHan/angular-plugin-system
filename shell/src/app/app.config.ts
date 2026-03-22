@@ -1,6 +1,6 @@
 import {
-  ApplicationConfig,
-  provideBrowserGlobalErrorListeners,
+    ApplicationConfig,
+    provideBrowserGlobalErrorListeners,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
@@ -12,22 +12,22 @@ const MyPreset = definePreset(Aura, {
     components: {
         floatlabel: {
             over: {
-              active: {
-                top: '-1rem',
-              },
-            }
-        }
-    }
+                active: {
+                    top: '-1rem',
+                },
+            },
+        },
+    },
 });
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(appRoutes),
-    providePrimeNG({
-      theme: {
-        preset: MyPreset,
-      },
-    }),
-  ],
+    providers: [
+        provideBrowserGlobalErrorListeners(),
+        provideRouter(appRoutes),
+        providePrimeNG({
+            theme: {
+                preset: MyPreset,
+            },
+        }),
+    ],
 };

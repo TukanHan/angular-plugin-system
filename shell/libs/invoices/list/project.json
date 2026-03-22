@@ -1,7 +1,7 @@
 {
-    "name": "feature-main",
+    "name": "invoices-list",
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "libs/shell/feature-main/src",
+    "sourceRoot": "libs/invoices/list/src",
     "prefix": "lib",
     "projectType": "library",
     "tags": [],

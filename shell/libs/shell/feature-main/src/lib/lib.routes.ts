@@ -17,9 +17,14 @@ export const featureMainRoutes: Route[] = [
                     import('@shell/dashboard').then((m) => m.Dashboard),
             },
             {
-                path: 'invoices',
+                path: 'invoices/form',
                 loadComponent: () =>
                     import('@shell/invoices-form').then((m) => m.InvoicesForm),
+            },
+            {
+                path: 'invoices/list',
+                loadComponent: () =>
+                    import('@shell/invoices-list').then((m) => m.InvoicesList),
             },
         ],
     },

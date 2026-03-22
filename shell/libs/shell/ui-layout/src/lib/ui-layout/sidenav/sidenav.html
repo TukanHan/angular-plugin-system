@@ -1,32 +1,71 @@
-<aside class="layout-sidebar shadow-2 border-round-xl surface-card flex flex-column justify-content-between">
+<aside
+    class="layout-sidebar shadow-2 border-round-xl surface-card flex flex-column justify-content-between"
+>
     <div class="flex flex-column gap-2">
         <div class="px-3 py-2">
-            <span class="text-xs font-bold text-500 uppercase tracking-wider">Główne</span>
+            <span class="text-xs font-bold text-500 uppercase tracking-wider"
+                >Główne</span
+            >
         </div>
 
         <nav class="flex flex-column gap-1">
-            <a routerLink="/dashboard" routerLinkActive="active-link" class="menu-item">
+            <a
+                routerLink="/dashboard"
+                routerLinkActive="active-link"
+                class="menu-item"
+            >
                 <i class="pi pi-home"></i>
                 <span>Dashboard</span>
             </a>
 
-            <a routerLink="/invoices" routerLinkActive="active-link" class="menu-item">
-                <i class="pi pi-file"></i>
-                <span>Faktury</span>
-            </a>
-
-            <a routerLink="/employees" routerLinkActive="active-link" class="menu-item">
+            <a
+                routerLink="/employees"
+                routerLinkActive="active-link"
+                class="menu-item"
+            >
                 <i class="pi pi-users"></i>
                 <span>Pracownicy</span>
             </a>
         </nav>
 
-        <div class="px-3 py-2 mt-3">
-            <span class="text-xs font-bold text-500 uppercase tracking-wider">Ustawienia</span>
+        <div class="px-3 py-2">
+            <span class="text-xs font-bold text-500 uppercase tracking-wider"
+                >Faktury</span
+            >
         </div>
 
         <nav class="flex flex-column gap-1">
-            <a routerLink="/settings" routerLinkActive="active-link" class="menu-item">
+            <a
+                routerLink="/invoices/list"
+                routerLinkActive="active-link"
+                class="menu-item"
+            >
+                <i class="pi pi-file"></i>
+                <span>Lista Faktur</span>
+            </a>
+
+            <a
+                routerLink="/invoices/form"
+                routerLinkActive="active-link"
+                class="menu-item"
+            >
+                <i class="pi pi-file-plus"></i>
+                <span>Nowa Faktura</span>
+            </a>
+        </nav>
+
+        <div class="px-3 py-2 mt-3">
+            <span class="text-xs font-bold text-500 uppercase tracking-wider"
+                >Ustawienia</span
+            >
+        </div>
+
+        <nav class="flex flex-column gap-1">
+            <a
+                routerLink="/settings"
+                routerLinkActive="active-link"
+                class="menu-item"
+            >
                 <i class="pi pi-cog"></i>
                 <span>Konfiguracja</span>
             </a>

@@ -23,6 +23,7 @@ import { CurrencyPipe } from '@angular/common';
         FloatLabelModule,
     ],
     templateUrl: './invoices-form.html',
+    host: { class: 'block m-4' },
 })
 export class InvoicesForm {
     protected readonly invoice = signal({
