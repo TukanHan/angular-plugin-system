@@ -1,0 +1,25 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "bundler",
+        "emitDecoratorMetadata": false,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2022",
+        "module": "preserve",
+        "lib": ["es2020", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@shell/ui-layout": ["libs/shell/ui-layout/src/index.ts"],
+            "@shell/feature-main": ["libs/shell/feature-main/src/index.ts"],
+            "@shell/invoices-form": ["libs/invoices/form/src/index.ts"],
+            "@shell/dashboard": ["libs/dashboard/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,68 @@
+<div class="col-12 lg:col-6">
+    <p-card header="Trend Sprzedaży" styleClass="shadow-2 h-full">
+        <p-chart type="line" [data]="salesData()" [options]="chartOptions" height="300px"></p-chart>
+    </p-card>
+</div>
+
+<div class="col-12 lg:col-6">
+    <p-card header="Struktura Wydatków" styleClass="shadow-2 h-full">
+        <div class="flex justify-content-center">
+            <p-chart type="pie" [data]="costsData()" [options]="chartOptions" height="300px" width="300px"></p-chart>
+        </div>
+    </p-card>
+</div>
+
+<div class="col-12 lg:col-3">
+    <div class="card shadow-2 p-3 border-round bg-blue-500 text-white">
+        <div class="flex justify-content-between mb-3">
+            <div>
+                <span class="block font-medium mb-3 text-blue-100">Aktywne Faktury</span>
+                <div class="text-xl font-bold">124</div>
+            </div>
+            <div class="flex align-items-center justify-content-center bg-blue-100 border-round w-3rem h-3rem">
+                <i class="pi pi-file text-blue-500 text-xl"></i>
+            </div>
+        </div>
+        <span class="text-blue-100 font-medium">+12 </span>
+        <span class="text-blue-200 text-sm">od ostatniego miesiąca</span>
+    </div>
+</div>
+
+<div class="col-12 lg:col-3">
+    <div class="card shadow-2 p-3 border-round bg-green-500 text-white">
+        <div class="flex justify-content-between mb-3">
+            <div>
+                <span class="block font-medium mb-3 text-green-100">Przychód (rok)</span>
+                <div class="text-xl font-bold">450 200 PLN</div>
+            </div>
+            <div class="flex align-items-center justify-content-center bg-green-100 border-round w-3rem h-3rem">
+                <i class="pi pi-money-bill text-green-500 text-xl"></i>
+            </div>
+        </div>
+        <span class="text-green-100 font-medium">+5.2% </span>
+        <span class="text-green-200 text-sm">prognoza wzrostu</span>
+    </div>
+</div>
+
+<div class="col-12 lg:col-6">
+    <p-card header="Ostatnie zdarzenia w systemie" styleClass="shadow-2">
+        <ul class="list-none p-0 m-0">
+            <li class="flex align-items-center py-3 border-bottom-1 surface-border">
+                <i class="pi pi-plus-circle text-green-500 mr-3 text-xl"></i>
+                <div class="flex-1">
+                    <div class="font-medium text-900">Nowa faktura wystawiona dla: XYZ Sp. z o.o.</div>
+                    <div class="text-600 text-sm">2 minuty temu</div>
+                </div>
+                <p-button icon="pi pi-chevron-right" [text]="true"></p-button>
+            </li>
+            <li class="flex align-items-center py-3">
+                <i class="pi pi-user-plus text-blue-500 mr-3 text-xl"></i>
+                <div class="flex-1">
+                    <div class="font-medium text-900">Dodano nowego pracownika: Jan Kowalski</div>
+                    <div class="text-600 text-sm">15 minut temu</div>
+                </div>
+                <p-button icon="pi pi-chevron-right" [text]="true"></p-button>
+            </li>
+        </ul>
+    </p-card>
+</div>

@@ -3,9 +3,9 @@ const { withNativeFederation, shareAll } = require('@angular-architects/native-f
 module.exports = withNativeFederation({
   name: 'shell',
 
-
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+    'primeng/api': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
   },
 
   skip: [
