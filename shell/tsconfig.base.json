@@ -19,7 +19,8 @@
             "@shell/feature-main": ["libs/shell/feature-main/src/index.ts"],
             "@shell/invoices-form": ["libs/invoices/form/src/index.ts"],
             "@shell/dashboard": ["libs/dashboard/src/index.ts"],
-            "@shell/invoices-list": ["libs/invoices/list/src/index.ts"]
+            "@shell/invoices-list": ["libs/invoices/list/src/index.ts"],
+            "@shell/utils": ["libs/shared/utils/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

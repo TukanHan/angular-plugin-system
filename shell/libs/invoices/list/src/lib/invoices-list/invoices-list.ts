@@ -8,10 +8,12 @@ import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
 import { CurrencyPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { PluginSlot } from '@shell/utils';
 
 @Component({
     selector: 'lib-invoices-list',
     imports: [
+        PluginSlot,
         RouterModule,
         CurrencyPipe,
         TableModule,

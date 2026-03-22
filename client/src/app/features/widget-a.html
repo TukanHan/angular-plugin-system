@@ -1,1 +1,32 @@
-<p>widget-a works!</p>
+<p-card header="Dane podstawowe" styleClass="shadow-2 h-full">
+    <p-fluid>
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-6 mb-4">
+                <p-floatLabel>
+                    <input pInputText id="clientName" [ngModel]="name()" (ngModelChange)="name.set($event)" />
+                    <label for="clientName">Pełna nazwa kontrahenta</label>
+                </p-floatLabel>
+            </div>
+
+            <div class="col-12 md:col-3 mb-4">
+                <p-floatLabel>
+                    <p-inputMask id="nip" mask="999-999-99-99" [ngModel]="nip()" (ngModelChange)="nip.set($event)"
+                        slotChar=" " />
+                    <label for="nip">NIP</label>
+                </p-floatLabel>
+            </div>
+
+            <div class="col-12 md:col-3 mb-4">
+                <p-floatLabel>
+                    <p-select id="type" [options]="clientTypes" optionLabel="label" optionValue="value" [ngModel]="type()"
+                        (ngModelChange)="type.set($event)" />
+                    <label for="type">Typ</label>
+                </p-floatLabel>
+            </div>
+
+            <div class="col-12 flex justify-content-end mt-2">
+                <p-button label="Zapisz zmiany" icon="pi pi-check" severity="success" (onClick)="onSave()" styleClass="w-auto" />
+            </div>
+        </div>
+    </p-fluid>
+</p-card>

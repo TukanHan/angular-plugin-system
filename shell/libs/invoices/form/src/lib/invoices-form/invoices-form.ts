@@ -8,10 +8,12 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { FormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
+import { PluginSlot } from '@shell/utils';
 
 @Component({
     selector: 'lib-invoices-form',
     imports: [
+        PluginSlot,
         CurrencyPipe,
         FormsModule,
         ButtonModule,

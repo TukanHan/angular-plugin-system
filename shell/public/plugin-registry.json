@@ -1,0 +1,8 @@
+[
+    {
+        "slotName": "invoice-form",
+        "remoteName": "client",
+        "exposedModule": "./Widget",
+        "componentName": "WidgetA"
+    }
+]

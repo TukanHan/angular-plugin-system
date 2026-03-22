@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
+import { PluginSlot } from '@shell/utils';
 
 @Component({
     selector: 'lib-dashboard',
-    imports: [CardModule, ChartModule, ButtonModule],
+    imports: [CardModule, ChartModule, ButtonModule, PluginSlot],
     templateUrl: './dashboard.html',
     host: { class: 'm-4 grid' },
 })
