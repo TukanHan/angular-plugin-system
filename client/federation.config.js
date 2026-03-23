@@ -6,6 +6,7 @@ module.exports = withNativeFederation({
   exposes: {
     './Component': './src/app/app.ts',
     './Widget': './src/app/features/widget-a.ts',
+    'dashboard-plugin': './src/app/features/dashboard-plugin/dashboard-plugin.ts',
   },
 
   shared: {

@@ -1,5 +1,11 @@
 [
     {
+        "slotName": "dashboard",
+        "remoteName": "client",
+        "exposedModule": "dashboard-plugin",
+        "componentName": "DashboardPlugin"
+    },
+    {
         "slotName": "invoice-form",
         "remoteName": "client",
         "exposedModule": "./Widget",
