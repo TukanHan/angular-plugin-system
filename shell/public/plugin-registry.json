@@ -8,7 +8,7 @@
     {
         "slotName": "invoice-form",
         "remoteName": "client",
-        "exposedModule": "./Widget",
-        "componentName": "WidgetA"
+        "exposedModule": "customer-detail-section",
+        "componentName": "CustomerDetailSection"
     }
 ]

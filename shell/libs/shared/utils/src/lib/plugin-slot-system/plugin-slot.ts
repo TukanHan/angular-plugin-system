@@ -2,6 +2,7 @@ import {
     Directive,
     inject,
     input,
+    inputBinding,
     OnInit,
     ViewContainerRef,
 } from '@angular/core';
@@ -11,9 +12,9 @@ import { PluginConfigLoader } from './plugin-loader';
     selector: '[libPluginSlot]',
 })
 export class PluginSlot implements OnInit {
-    public readonly slotName = input.required<string>({
-        alias: 'libPluginSlot',
-    });
+    public readonly slotName = input.required<string>();
+
+    public readonly apiData = input<unknown>();
 
     private readonly pluginLoader = inject(PluginConfigLoader);
 
@@ -24,7 +25,9 @@ export class PluginSlot implements OnInit {
             .getPluginsForSlot(this.slotName())
             .then((plugin) => {
                 if (plugin) {
-                    this.vcr.createComponent(plugin);
+                    this.vcr.createComponent(plugin, {
+                        bindings: [inputBinding('apiData', this.apiData)],
+                    });
                 }
             })
             .catch((e) => {

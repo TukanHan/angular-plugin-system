@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -9,10 +9,14 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { FormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
 import { PluginSlot } from '@shell/utils';
+import { form, FormField } from '@angular/forms/signals';
+import { DialogService } from 'primeng/dynamicdialog';
+import { InfoModalComponent } from './inoice-saved-dialog';
 
 @Component({
     selector: 'lib-invoices-form',
     imports: [
+        FormField,
         PluginSlot,
         CurrencyPipe,
         FormsModule,
@@ -24,10 +28,13 @@ import { PluginSlot } from '@shell/utils';
         SelectModule,
         FloatLabelModule,
     ],
+    providers: [DialogService],
     templateUrl: './invoices-form.html',
     host: { class: 'block m-4' },
 })
 export class InvoicesForm {
+    private readonly dialogService = inject(DialogService);
+
     protected readonly invoice = signal({
         number: 'FV/' + new Date().getFullYear() + '/001',
         date: new Date(),
@@ -37,6 +44,8 @@ export class InvoicesForm {
         amount: 0,
         currency: 'PLN',
     });
+
+    protected readonly invoiceForm = form(this.invoice);
 
     protected readonly currencies = [
         { label: 'PLN', value: 'PLN' },
@@ -48,7 +57,14 @@ export class InvoicesForm {
         () => this.invoice().amount * 1.23,
     );
 
+    protected readonly apiData = { invoiceForm: this.invoiceForm };
+
     protected saveInvoice() {
-        console.log('Zapisywanie faktury:', this.invoice());
+        this.dialogService.open(InfoModalComponent, {
+            header: 'Faktura zapisana',
+            width: '40vw',
+            modal: true,
+            data: this.invoice()
+        });
     }
 }

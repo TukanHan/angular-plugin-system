@@ -1,42 +1,42 @@
 {
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "defaultBase": "master",
-  "analytics": false,
-  "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
-    "production": [
-      "default",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.mjs"
-    ],
-    "sharedGlobals": []
-  },
-  "targetDefaults": {
-    "@angular/build:application": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "defaultBase": "master",
+    "analytics": false,
+    "namedInputs": {
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "production": [
+            "default",
+            "!{projectRoot}/.eslintrc.json",
+            "!{projectRoot}/eslint.config.mjs"
+        ],
+        "sharedGlobals": []
     },
-    "@nx/eslint:lint": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs"
-      ]
-    }
-  },
-  "generators": {
-    "@nx/angular:application": {
-      "e2eTestRunner": "none",
-      "linter": "eslint",
-      "style": "scss",
-      "unitTestRunner": "none"
+    "targetDefaults": {
+        "@angular/build:application": {
+            "cache": true,
+            "dependsOn": ["^build"],
+            "inputs": ["production", "^production"]
+        },
+        "@nx/eslint:lint": {
+            "cache": true,
+            "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.mjs"
+            ]
+        }
     },
-    "@nx/angular:component": {
-      "style": "css"
-    }
-  },
-  "defaultProject": "client"
+    "generators": {
+        "@nx/angular:application": {
+            "e2eTestRunner": "none",
+            "linter": "eslint",
+            "style": "scss",
+            "unitTestRunner": "none"
+        },
+        "@nx/angular:component": {
+            "style": "css"
+        }
+    },
+    "defaultProject": "client"
 }

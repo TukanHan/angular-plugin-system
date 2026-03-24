@@ -1,6 +1,9 @@
-<ng-container *libPluginSlot="'invoice-form'" />
+<ng-container libPluginSlot [slotName]="'invoice-form'" [apiData]="apiData" />
 
-<div class="flex justify-content-between align-items-center mb-4">
+<div
+    class="flex justify-content-between align-items-center mb-4"
+    data-testid="invoice-form-header-section"
+>
     <h1 class="m-0 text-2xl font-semibold">Nowa Faktura</h1>
     <div class="flex gap-2">
         <p-button
@@ -8,26 +11,28 @@
             severity="secondary"
             [outlined]="true"
             icon="pi pi-times"
+            data-testid="invoice-form-cancel-btn"
         ></p-button>
         <p-button
             label="Zapisz Fakturę"
             icon="pi pi-check"
             (onClick)="saveInvoice()"
+            data-testid="invoice-form-save-btn"
         ></p-button>
     </div>
 </div>
 
 <div class="grid">
-    <div class="col-12 lg:col-6">
+    <div class="col-12 lg:col-6" data-testid="invoice-form-document-section">
         <p-card header="Informacje o dokumencie" styleClass="h-full shadow-2">
             <div class="flex flex-column gap-4 py-2">
                 <p-floatLabel>
                     <input
                         pInputText
                         id="inv_num"
-                        [ngModel]="invoice().number"
-                        (ngModelChange)="invoice.update(v => ({...v, number: $event}))"
+                        [formField]="invoiceForm.number"
                         class="w-full"
+                        data-testid="invoice-form-number-input"
                     />
                     <label for="inv_num">Numer dokumentu</label>
                 </p-floatLabel>
@@ -36,11 +41,11 @@
                     <p-floatLabel class="flex-1">
                         <p-datepicker
                             id="inv_date"
-                            [ngModel]="invoice().date"
-                            (ngModelChange)="invoice.update(v => ({...v, date: $event}))"
+                            [formField]="$any(invoiceForm.date)"
                             class="w-full"
                             [showIcon]="true"
                             appendTo="body"
+                            data-testid="invoice-form-issue-date-picker"
                         ></p-datepicker>
                         <label for="inv_date">Data wystawienia</label>
                     </p-floatLabel>
@@ -48,11 +53,11 @@
                     <p-floatLabel class="flex-1">
                         <p-datepicker
                             id="due_date"
-                            [ngModel]="invoice().dueDate"
-                            (ngModelChange)="invoice.update(v => ({...v, dueDate: $event}))"
+                            [formField]="$any(invoiceForm.dueDate)"
                             class="w-full"
                             [showIcon]="true"
                             appendTo="body"
+                            data-testid="invoice-form-due-date-picker"
                         ></p-datepicker>
                         <label for="due_date">Termin płatności</label>
                     </p-floatLabel>
@@ -61,16 +66,16 @@
         </p-card>
     </div>
 
-    <div class="col-12 lg:col-6">
+    <div class="col-12 lg:col-6" data-testid="invoice-form-client-section">
         <p-card header="Dane nabywcy" styleClass="h-full shadow-2">
             <div class="flex flex-column gap-4 py-2">
                 <p-floatLabel>
                     <input
                         pInputText
                         id="client"
-                        [ngModel]="invoice().client"
-                        (ngModelChange)="invoice.update(v => ({...v, client: $event}))"
+                        [formField]="invoiceForm.client"
                         class="w-full"
+                        data-testid="invoice-form-client-input"
                     />
                     <label for="client">Nazwa firmy / Imię i nazwisko</label>
                 </p-floatLabel>
@@ -79,9 +84,9 @@
                     <input
                         pInputText
                         id="tax_id"
-                        [ngModel]="invoice().taxId"
-                        (ngModelChange)="invoice.update(v => ({...v, taxId: $event}))"
+                        [formField]="invoiceForm.taxId"
                         class="w-full"
+                        data-testid="invoice-form-tax-id-input"
                     />
                     <label for="tax_id">NIP / Tax ID</label>
                 </p-floatLabel>
@@ -89,15 +94,15 @@
         </p-card>
     </div>
 
-    <div class="col-12">
-        <p-card header="Podsumowanie finansowe" styleClass="shadow-2">
+    <div class="col-12 lg:col-6" data-testid="invoice-form-amount-section">
+        <p-card header="Dane faktury" styleClass="shadow-2 h-full">
             <div class="grid align-items-center">
-                <div class="col-12 lg:col-4">
+                <div class="col-12 md:col-8">
                     <p-floatLabel>
                         <p-inputNumber
                             id="amount"
-                            [ngModel]="invoice().amount"
-                            (ngModelChange)="invoice.update(v => ({...v, amount: $event}))"
+                            [formField]="$any(invoiceForm.amount)"
+                            data-testid="invoice-form-amount-input"
                             mode="currency"
                             [currency]="invoice().currency"
                             locale="pl-PL"
@@ -108,24 +113,33 @@
                         <label for="amount">Kwota Netto</label>
                     </p-floatLabel>
                 </div>
-
-                <div class="col-12 lg:col-2">
+                <div class="col-12 md:col-4">
                     <p-select
                         [options]="currencies"
-                        [ngModel]="invoice().currency"
-                        (ngModelChange)="invoice.update(v => ({...v, currency: $event}))"
+                        [formField]="$any(invoiceForm.currency)"
                         class="w-full"
                         placeholder="Waluta"
-                    ></p-select>
+                        data-testid="invoice-form-currency-select"
+                    >
+                    </p-select>
                 </div>
+            </div>
+        </p-card>
+    </div>
 
-                <div class="col-12 lg:col-6 text-right">
-                    <div class="text-600 font-medium">
-                        Suma Brutto (estymowana 23% VAT):
-                    </div>
-                    <div class="text-3xl font-bold text-primary">
-                        {{ totalBrutto() | currency: invoice().currency }}
-                    </div>
+    <div class="col-12 lg:col-6" data-testid="invoice-form-total-section">
+        <p-card header="Do zapłaty" styleClass="shadow-2 h-full">
+            <div
+                class="flex flex-column align-items-end justify-content-center"
+            >
+                <div class="text-600 font-medium">
+                    Suma Brutto (est. 23% VAT)
+                </div>
+                <div
+                    class="text-4xl font-bold text-primary"
+                    data-testid="invoice-form-total-brutto"
+                >
+                    {{ totalBrutto() | currency: invoice().currency }}
                 </div>
             </div>
         </p-card>
