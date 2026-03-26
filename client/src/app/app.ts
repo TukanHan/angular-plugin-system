@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { PluginsPreview } from "./plugins-preview/plugins-preview";
 
 @Component({
-    imports: [NxWelcome, RouterModule],
+    imports: [PluginsPreview],
     selector: 'app-root',
-    templateUrl: './app.html',
-    styleUrl: './app.scss',
+    template: `<app-plugins-preview/>`,
 })
 export class App {
     protected title = 'client';

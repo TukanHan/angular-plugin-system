@@ -4,6 +4,8 @@ import {
     input,
     inputBinding,
     OnInit,
+    reflectComponentType,
+    Type,
     ViewContainerRef,
 } from '@angular/core';
 import { PluginConfigLoader } from './plugin-loader';
@@ -25,16 +27,18 @@ export class PluginSlot implements OnInit {
             .getPluginsForSlot(this.slotName())
             .then((plugin) => {
                 if (plugin) {
-                    this.vcr.createComponent(plugin, {
-                        bindings: [inputBinding('apiData', this.apiData)],
-                    });
+                    this.createPlugin(plugin);
                 }
             })
-            .catch((e) => {
-                console.error(
-                    `Failed to load plugins for ${this.slotName()}`,
-                    e,
-                );
-            });
+            .catch((e) => console.error(`Failed to load plugins for ${this.slotName()}: ${e}`));
+    }
+
+    private createPlugin(pluginComponent: Type<unknown>): void {
+        const mirror = reflectComponentType(pluginComponent);
+        const hasApiDataInput = mirror?.inputs.some((i) => i.templateName === 'apiData');
+
+        this.vcr.createComponent(pluginComponent, {
+            bindings: hasApiDataInput ? [inputBinding('apiData', this.apiData)] : [],
+        });
     }
 }

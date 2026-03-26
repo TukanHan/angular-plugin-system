@@ -1,17 +1,12 @@
-const {
-    withNativeFederation,
-    shareAll,
-} = require('@angular-architects/native-federation/config');
+const { withNativeFederation, shareAll } = require('@angular-architects/native-federation/config');
 
 module.exports = withNativeFederation({
     name: 'client',
 
     exposes: {
         './Component': './src/app/app.ts',
-        'customer-detail-section':
-            './src/app/features/customer-detail-section/customer-detail-section.ts',
-        'dashboard-plugin':
-            './src/app/features/dashboard-plugin/dashboard-plugin.ts',
+        'payer-detail-plugin': './src/app/features/payer-detail-plugin/payer-detail-plugin.ts',
+        'dashboard-plugin': './src/app/features/dashboard-plugin/dashboard-plugin.ts',
     },
 
     shared: {

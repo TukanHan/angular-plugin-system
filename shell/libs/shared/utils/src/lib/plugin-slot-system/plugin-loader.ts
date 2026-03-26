@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Type } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PluginSlotConfig } from './plugin-slot-config.interface';
 import { firstValueFrom, map } from 'rxjs';
@@ -25,10 +25,7 @@ export class PluginConfigLoader {
             .get<PluginSlotConfig[]>('/plugin-registry.json')
             .pipe(
                 map((plugins) =>
-                    plugins.reduce(
-                        (map, p) => map.set(p.slotName, p),
-                        new Map<string, PluginSlotConfig>(),
-                    ),
+                    plugins.reduce((map, p) => map.set(p.slotName, p), new Map<string, PluginSlotConfig>()),
                 ),
             );
 
@@ -40,7 +37,7 @@ export class PluginConfigLoader {
         }
     }
 
-    public async getPluginsForSlot(slotName: string): Promise<any | null> {
+    public async getPluginsForSlot(slotName: string): Promise<Type<unknown> | null> {
         await this._initialized;
 
         if (this._componentCache.has(slotName)) {
@@ -56,10 +53,7 @@ export class PluginConfigLoader {
         let module = this._moduleCache.get(moduleKey);
 
         if (!module) {
-            module = await loadRemoteModule(
-                plugin.remoteName,
-                plugin.exposedModule,
-            );
+            module = await loadRemoteModule(plugin.remoteName, plugin.exposedModule);
             this._moduleCache.set(moduleKey, module);
         }
 
